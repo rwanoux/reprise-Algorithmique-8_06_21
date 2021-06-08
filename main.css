@@ -26,6 +26,7 @@ main > div {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    line-height: 0.1em;
 }
 #resultBoucles > div {
     border: 1px solid black;

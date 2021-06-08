@@ -54,8 +54,11 @@ function boucles() {
     DrawAll(resultZone, nbr);
 
 
-    //---function drawAll qui trace tout ;
+    //---function drawAll qui trace tout ; 
     function DrawAll(el, n) {
+        //ré-init le contenu du div d'affichage de résultat
+        el.innerHTML = "";
+        //creation des div enfants contenant les figures
         el.append(drawLine(n));
         el.append(drawRect(n));
         el.append(drawTri(n))
