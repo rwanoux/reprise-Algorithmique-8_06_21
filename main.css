@@ -1,0 +1,33 @@
+body {
+    text-align: center;
+}
+#pdf-container * {
+    padding: none;
+    width: 100%;
+    height: 100%;
+}
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+main > div {
+    overflow: scroll;
+    width: 50vw;
+    height: 60vh;
+    flex-direction: column;
+}
+.exo {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+}
+#resultBoucles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+#resultBoucles > div {
+    border: 1px solid black;
+    padding: 15px;
+}
