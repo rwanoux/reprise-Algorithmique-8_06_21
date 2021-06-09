@@ -55,64 +55,86 @@ function repOuiNon() {
 
 
 //décla des variables necessaires
-let chaine = "";
-let prems = "";
-let derns = "";
-
+let mesVarObjet = {
+    chaine: "",
+    prems: "",
+    derns: ""
+}
 //init de la chaine de caractere à mouliner
 function initFirstLast() {
-    chaine = prompt('entrez la chaine de caractère dont vous voulez trouver le premier et dernier caractère');
-
+    mesVarObjet.chaine = prompt('entrez la chaine de caractère dont vous voulez trouver le premier et dernier caractère');
 }
 
 //function qui renvoit la partie gauche d'un texte
-function left(chaine, index) {
-    return chaine.slice(0, index);
+function left(text, index) {
+    return text.slice(0, index);
 }
 //fonction qui renvoie la partie gauche
-function right(chaine, index) {
-    return chaine.slice(-1 * index)
+function right(text, index) {
+    return text.slice(-1 * index)
 }
 
 //fonction principale
 function firstLast(mouliner, alpha, omega) {
     alpha = left(mouliner, 1);//sous-procedure
     omega = right(mouliner, 1);//sous-procedure
-
-    console.log(`
-        chaine= ${mouliner}
-        prems= ${alpha}
-        derns=${omega}
+    alert(`
+    la chaine à traiter : ${mouliner}
+    premier caracter : ${alpha}
+    dernier caracter : ${omega}
     `)
 }
 
 //apeller la fonction sur un click
+document.getElementById("buttonFirstLast").addEventListener('click', () => {
+    firstLast(mesVarObjet.chaine, mesVarObjet.prems, mesVarObjet.derns);
+    console.log(mesVarObjet)
 
-document.getElementById("buttonFirstLast").addEventListener('click', function () {
-    firstLast(chaine, prems, derns)
 })
-
 function boucles() {
 
-    //----décla des variables
+    //----décla des variables générales
     let nbr = parseInt(prompt("combien d'étoiles à la base des figures"));
+
+    //---le div où va s'afficher le resultat
     let resultZone = document.getElementById('resultBoucles');
 
-    DrawAll(resultZone, nbr);
 
+    //--appelle de la fonction principale
+    DrawResult(resultZone, nbr);
 
-    //---function drawAll qui trace tout ; 
-    function DrawAll(el, n) {
+    //---décla de la function principale qui trace tout ; 
+    function DrawResult(el, n) {
         //ré-init le contenu du div d'affichage de résultat
         el.innerHTML = "";
-        //creation des div enfants contenant les figures
-        el.append(drawLine(n));
-        el.append(drawRect(n));
-        el.append(drawTri(n));
+
+        //switch sur le return de la function chooseFigure
+        switch (chosenFigure()) {
+
+            // el = le div où va s'afficher le resultat (=resultZone)
+            // parent.append(enfant) colle un élément HTML enfant à un element html parent
+            case "triangle":
+                el.append(drawTri(n));//appele poour tracer triangle drawTri() return un element html
+                break;
+            case "ligne":
+                el.append(drawLine(n));//appele pour tracer ligne
+                break;
+            case "rectangle":
+                el.append(drawRect(n));//appelle pour tracer rectangle
+                break
+        }
+
     };
+    //---décla de la fonction qui permet de choisir la figure
+    function chosenFigure() {
+        let acceptableChoices = ["ligne", "rectangle", "triangle"]
+        let res;
+        do { res = prompt("quelle figure afficher ? tapez triangle rectangle ou ligne") }
+        while (acceptableChoices.indexOf(res) == -1);
+        return res
 
-
-    //----------creation line
+    }
+    //---------décla -creation line
     function drawLine(n) {
         let lineDive = document.createElement('div');//je crée un div
         let inner = "";//j'initialise une chaine de caractère
@@ -122,7 +144,7 @@ function boucles() {
         lineDive.append(createPara(inner));//création d'une ligne
         return lineDive// je renvoie le div line
     };
-    //--------creation rectangle
+    //-------decla -creation rectangle
     function drawRect(n) {
         let rectDiv = document.createElement('div')//creation du div
 
@@ -134,9 +156,9 @@ function boucles() {
             rectDiv.append(createPara(inner))//creation du paragraphe contenant nbr * "x"
         };
         return rectDiv//je renvoie le div
-    }
+    };
 
-    //------creation triangle
+    //-----decla -creation triangle
     function drawTri(n) {
         let triDiv = document.createElement('div')// le div triangle
 
@@ -150,7 +172,8 @@ function boucles() {
 
         };
         return triDiv
-    }
+    };
+
     //----creation d'un paragraphe ====>une ligne du dessin
     function createPara(text) {
         let el = document.createElement('p');
@@ -160,3 +183,4 @@ function boucles() {
 
 
 }
+
