@@ -43,7 +43,54 @@ function notesEleves() {
     alert(`la moyenne est de ${moy}`)
 }
 
+function repOuiNon() {
+    let reponse = "";
+    while (reponse != "oui" && reponse != "non") {
+        reponse = prompt('répondez oui ou non');
+    }
 
+
+}
+
+
+
+//décla des variables necessaires
+let chaine = "";
+let prems = "";
+let derns = "";
+
+//init de la chaine de caractere à mouliner
+function initFirstLast() {
+    chaine = prompt('entrez la chaine de caractère dont vous voulez trouver le premier et dernier caractère');
+
+}
+
+//function qui renvoit la partie gauche d'un texte
+function left(chaine, index) {
+    return chaine.slice(0, index);
+}
+//fonction qui renvoie la partie gauche
+function right(chaine, index) {
+    return chaine.slice(-1 * index)
+}
+
+//fonction principale
+function firstLast(mouliner, alpha, omega) {
+    alpha = left(mouliner, 1);//sous-procedure
+    omega = right(mouliner, 1);//sous-procedure
+
+    console.log(`
+        chaine= ${mouliner}
+        prems= ${alpha}
+        derns=${omega}
+    `)
+}
+
+//apeller la fonction sur un click
+
+document.getElementById("buttonFirstLast").addEventListener('click', function () {
+    firstLast(chaine, prems, derns)
+})
 
 function boucles() {
 
@@ -61,7 +108,7 @@ function boucles() {
         //creation des div enfants contenant les figures
         el.append(drawLine(n));
         el.append(drawRect(n));
-        el.append(drawTri(n))
+        el.append(drawTri(n));
     };
 
 
@@ -97,7 +144,6 @@ function boucles() {
             let inner = "";
             for (let x = 1; x <= i + 1; x++) {//le nombre d'"*" incrémente
                 inner += "*";
-                console.log(inner)
             };
 
             triDiv.append(createPara(inner))//création ligne
