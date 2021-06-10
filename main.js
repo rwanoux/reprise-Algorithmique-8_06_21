@@ -56,18 +56,20 @@ function repOuiNon() {
 
 //décla des variables necessaires
 let mesVarObjet = {
-    chaine: "",
+    chaine: "kujqgflkjbskjfbksdjbfvvkjsdbfkjhdsbkfjqdkfjbs",
     prems: "",
     derns: ""
 }
+/*
 //init de la chaine de caractere à mouliner
 function initFirstLast() {
     mesVarObjet.chaine = prompt('entrez la chaine de caractère dont vous voulez trouver le premier et dernier caractère');
 }
+*/
 
 //function qui renvoit la partie gauche d'un texte
 function left(text, index) {
-    return text.slice(0, index);
+    return text.slice(0, index)
 }
 //fonction qui renvoie la partie gauche
 function right(text, index) {
@@ -83,14 +85,18 @@ function firstLast(mouliner, alpha, omega) {
     premier caracter : ${alpha}
     dernier caracter : ${omega}
     `)
+
 }
 
 //apeller la fonction sur un click
 document.getElementById("buttonFirstLast").addEventListener('click', () => {
     firstLast(mesVarObjet.chaine, mesVarObjet.prems, mesVarObjet.derns);
-    console.log(mesVarObjet)
 
 })
+
+
+
+
 function boucles() {
 
     //----décla des variables générales
@@ -167,9 +173,7 @@ function boucles() {
             for (let x = 1; x <= i + 1; x++) {//le nombre d'"*" incrémente
                 inner += "*";
             };
-
             triDiv.append(createPara(inner))//création ligne
-
         };
         return triDiv
     };
@@ -183,4 +187,3 @@ function boucles() {
 
 
 }
-
